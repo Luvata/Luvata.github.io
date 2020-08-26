@@ -1,0 +1,41 @@
+<h1 id="probabilistic-graphical-model-pgm---mlss-2013---bishop">Probabilistic Graphical Model (PGM) - MLSS 2013 - Bishop</h1>
+<p>The course comes with 3 lecture videos that was taught by <a href="Christopher%20Bishop.md">Christopher Bishop</a> at MLSS 2013. I took this course when I’m stuck at Lecture 5 of CS330. It’s also the first course I learn from <a href="MLSS.md">MLSS</a>. IMO he did give a brief introduction to graphical model and its applications (which is quite interesting), but to understand PGM only from these three lecture videos is still far from enough. I suggest reading chapter 8 of PRML for deeper understanding. Below is my summary of this course</p>
+<h2 id="topic-covers">1. Topic covers</h2>
+<h3 id="review-of-probability">1.1 Review of probability:</h3>
+<p>The first and second lecture video give a brief explain about probability overview - 4 rules of Probability: - Product rule - Sum rule - Denominator rule - <a href="Bayes&#39;%20theorem.md">Bayes’ theorem</a> - Conditional independence, and how it changes under different observations</p>
+<h3 id="graphical-model">1.2. Graphical Model</h3>
+<p>The last half of first lecture, and the second lecture dive deeper into how represent event as graph, its application,</p>
+<p>Combine probability with graph. It comes with some advantages: - Using graph theories for efficient inference (Instead of greedy compute, we use graph factorization to calculate particular interested event)</p>
+<ul>
+<li>Three types of graph to represent joint probability:
+<ul>
+<li><a href="Directed%20graph.md">Directed graph</a></li>
+<li><a href="Undirected%20graph.md">Undirected graph</a></li>
+<li><a href="Factor%20graph.md">Factor graph</a></li>
+</ul></li>
+<li>Algorithms that were mentioned and their applications:
+<ul>
+<li>Under the hood, <a href="Sum-Product%20Algorithm.md">Sum-Product Algorithm</a> played an important roles to infer efficiently by only looking at message schedule from each nodes in two directions
+<ul>
+<li>Calculate probability of a node, as a recursive algorithm</li>
+<li>Efficient for tree structure</li>
+<li>If the graph has loops, approximation (ignore the loops, treat it like a normal tree) can still give a decent answer</li>
+</ul></li>
+<li><a href="Image%20denoising.md">Image denoising</a>, by finding the image that has lowest energy between predict pixel and truth pixel, and also between neighbor pixel</li>
+<li><a href="Markov%20Random%20Field.md">Markov Random Field</a> for <a href="Image%20Segmentation.md">Image Segmentation</a></li>
+<li><a href="Kalman%20Filter.md">Kalman Filter</a> for hand tracking with noisy sensor and moving hand :
+<ul>
+<li>Estimate the noise level of sensor</li>
+<li>Lower the uncertainty of predictions from recent observation</li>
+</ul></li>
+<li><a href="Expectation%20Propagation.md">Expectation Propagation</a> for player ranking, in <a href="TrueSkill.md">TrueSkill</a></li>
+</ul></li>
+</ul>
+<h2 id="interesting-readings">2. Interesting readings</h2>
+<ul>
+<li>Variables could be dependent together or not under different observations</li>
+<li>Image denoising example is some kind of energy based model, that minimize energy of true pixel value and observable pixel (pixel could be noise)</li>
+<li>Directed graph to represent <a href="Principle%20Component%20Analysis.md">Principle Component Analysis</a></li>
+<li>Calculate player’s Elo, over time, solo or with team, with <a href="Expectation%20Propagation.md">Expectation Propagation</a></li>
+<li>Programming language for probabilistic models: CSoft</li>
+</ul>
