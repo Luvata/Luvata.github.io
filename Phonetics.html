@@ -1,0 +1,150 @@
+<h1 id="phonetics">Phonetics</h1>
+<p>Tóm tắt các ghi chép về phonetics, dựa vào 2 tài liệu chính là <a href="https://web.stanford.edu/~jurafsky/slp3/27.pdf">SLP3 - Chapter 27 Phonetics</a> và <a href="https://raw.githubusercontent.com/sknadig/cs224s/master/224s.17.lec2.pdf">CS224S - Lecture 2 Phonetics</a></p>
+<h2 id="phonetics-transcription">1. Phonetics transcription</h2>
+<ol type="1">
+<li><strong>Phone</strong> : Trong speech processing, ta phiên âm cách phát âm của 1 từ bằng 1 chuỗi các phones. Phone là 1 âm, được quy định bằng 1 ký hiệu trong bảng phiên âm</li>
+<li>Có 2 hệ (2 bảng chữ cái) quy định phiên âm là:
+<ul>
+<li>ARPABET</li>
+<li>IPA</li>
+</ul></li>
+</ol>
+<h2 id="phát-âm">2. Phát âm</h2>
+<ol type="1">
+<li>Phones chia làm 2 nhóm chính:
+<ul>
+<li><strong>Phụ âm (consonants)</strong>: tạo ra bằng sự chặn hơi qua miệng / họng / mũi (vd: p, b, t, d, k, s, z )</li>
+<li><strong>Nguyên âm (vowels)</strong>: các âm còn lại (vd: aa, ae, ao, ih, aw, ow, …)</li>
+</ul></li>
+<li>Syllables (âm)
+<ol type="1">
+<li><strong>Syllables</strong>: Kết hợp của nguyên âm và phụ âm tạo thành cách phát âm của 1 từ
+<ul>
+<li>vd: dog <code>[d aa g]</code> -&gt; 1 syllable</li>
+<li>catnip <code>[k ae t ] [n ih p]</code> -&gt; 2 syllables</li>
+<li><strong>Nucleus</strong>: Nguyên âm ở <strong>giữa</strong> của 1 syllable,</li>
+<li><strong>Onset</strong>: Phụ âm <strong>ở đầu</strong> 1 syllable, từ <code>strike</code> có onset là <code>s t r</code>, gọi là complex onset</li>
+<li><strong>Coda</strong>: Phụ âm / chuỗi phụ âm <strong>theo sau nucleus</strong></li>
+</ul></li>
+<li><strong>Syllabifications</strong>: Task chia 1 từ thành các syllables</li>
+</ol></li>
+</ol>
+<h2 id="prosodic-prominence">3. Prosodic Prominence</h2>
+<blockquote>
+<p>In a natural utterance of American English, some words sound more prominent than others, and certain syllables in these words are also more prominent than others.</p>
+</blockquote>
+<p>Từ nhấn / syllable nhấn (stress / prominence) : Là từ / syllable người nghe thấy nổi bật hơn. Thường được làm nổi bật bằng 3 cách:</p>
+<ul>
+<li>Nói to hơn (louder)</li>
+<li>Nói chậm hơn (longer duration)</li>
+<li>Higher pitch</li>
+</ul>
+<p>Stress được quy ước khác nhau trong các bộ từ điển phiên âm:</p>
+<ul>
+<li><strong>ARPABET</strong>:
+<ul>
+<li>Đánh số <code>1</code> vào sau <strong>nucleus</strong> của <strong>stress syllable</strong>. Vd: <code>table</code>: <code>[T EY1 B AH0 L]</code></li>
+<li>Secondary stress: thấp hơn primary stress, cao hơn nguyên âm không tress, đánh số 2</li>
+</ul></li>
+<li><strong>IPA</strong>: <strong>đánh dấu <code>'</code> vào trước syllable</strong> được stress. Vd: [ˈpɑːsli]</li>
+</ul>
+<h2 id="tune">4. Tune</h2>
+<p><img src="phonetics_tune.png" alt="Tune" /> Tune: Sự lên xuống của feature <code>f0</code> theo thời gian</p>
+<h3 id="tune-prominence-tobi">Tune + Prominence: Tobi</h3>
+<blockquote>
+<p>ToBI is a phonological theory of intonation that <strong>models prominence, tune, and boundaries</strong>. ToBI’s model of prominence and tunes is based on the five pitch accents and four boundary tones</p>
+</blockquote>
+<blockquote>
+<p>One goal of ToBI is to express different meanings to the different type of accents</p>
+</blockquote>
+<figure>
+<img src="phonetics_tobi.png" alt="" /><figcaption>ToBI</figcaption>
+</figure>
+<p>Đường màu xanh (f0)</p>
+<ul>
+<li>Câu bên trái: Declarative - Accent Final fall (L-L%)</li>
+<li>Câu bên phải: Yes/No Question - Accent question rise (H-H%)</li>
+</ul>
+<h2 id="acoustic-phonetics-and-signals">5. Acoustic Phonetics and Signals</h2>
+<h3 id="waves">1. Waves</h3>
+<p>2 đặc điểm của sóng là tần số (frequency) và biên độ (amplitude)</p>
+<ul>
+<li>frequency: Số lần 1 sóng lặp lại trong 1 s (cycles). Đơn vị <strong>Hz</strong></li>
+<li>amplitude: Chiều cao tối đa của 1 sóng (trục Y)</li>
+<li>Period (chu kỳ): Thời gian hoàn thành 1 cycle, <span class="math inline"><em>T</em> = 1/<em>f</em></span></li>
+</ul>
+<h3 id="speech-sound-waves">2. Speech sound waves</h3>
+<blockquote>
+<p>To sample a signal, we measure its amplitude at a particular time; <strong>the sampling rate is the number of samples taken per second</strong></p>
+</blockquote>
+<blockquote>
+<p>telephone speech is often sampled at 8 kHz and stored as 8-bit samples, and microphone data is often sampled at 16 kHz and stored as 16-bit samples</p>
+</blockquote>
+<h3 id="frequency-amplitude-pitch-loudness">3. Frequency, Amplitude, Pitch, Loudness</h3>
+<ul>
+<li><strong>Pitch</strong> correlates with <strong>fundamental frequency f0</strong>: Higher f0 -&gt; higher pitch</li>
+</ul>
+<blockquote>
+<p>Âm trầm có tần số nhỏ, âm cao có tần số lớn. Tần số cơ bản của giọng nam thay đổi từ 80 Hz đến 250 Hz, trong khi đó giọng nữ là 120 Hz đến 400 Hz</p>
+</blockquote>
+<ul>
+<li><strong>Loudness</strong> correlates with <strong>power</strong>: Higher amplitudes -&gt; Louder</li>
+</ul>
+<figure>
+<img src="phonetics_waves.png" alt="" /><figcaption>WAVE</figcaption>
+</figure>
+<p>Biểu đồ wave form:</p>
+<ul>
+<li>Trục X: Thời gian</li>
+<li>Trục Y: Amplitude (đơn vị: Pascals PA): Measure air pressure (=0: normal air pressure, &lt; 0: lower than normal pressure)</li>
+</ul>
+<p>Ta có thể nhận ra cách phát âm một số phone dựa vào hình dạng waveform:</p>
+<ul>
+<li>Phụ âm bật (stop consonant: b, d, g, p, t, k): Waveform sẽ là một đoạn gần silence đi kèm burst amplitude</li>
+</ul>
+<figure>
+<img src="phonetics_stop_consonant.png" alt="" /><figcaption>Stop_consonant</figcaption>
+</figure>
+<ul>
+<li>Âm rít (hissy / fricative: s, z, sh, zh, ch, jh): Biên độ nhỏ, dày</li>
+</ul>
+<figure>
+<img src="phonetics_fricative.png" alt="" /><figcaption>fricative</figcaption>
+</figure>
+<h3 id="spectra-and-the-frequency-domain">4. Spectra and the Frequency Domain</h3>
+<blockquote>
+<p>The insight of Fourier analysis is that every complex wave can be represented as <strong>a sum of many sine waves of different frequencies</strong></p>
+</blockquote>
+<blockquote>
+<p>The <strong>fundamental frequency F0</strong> is the <strong>lowest frequency</strong> present in the complex sound and the one that determines the perceived pitch of that sound</p>
+</blockquote>
+<figure>
+<img src="phonetics_wave_ae.png" alt="" /><figcaption>wave-ae</figcaption>
+</figure>
+<p>Từ waveform trên có thể quan sát được :</p>
+<ul>
+<li>Complex wave lặp lại ~ 10 lần trong 0.04275s -&gt; F0 = 10/0.04275 = 245Hz</li>
+<li>Một chu kỳ có xấp xỉ 4 chu kỳ của sóng nhỏ, có tần số ~ 4 lần sóng lớn, sẽ có F ~ = 245 * 4 = 936 Hz</li>
+<li>Mỗi đỉnh sóng nhỏ có 2 sóng nhỏ hơn -&gt; F ~ = 936 * 2 = 1872 Hz</li>
+</ul>
+<p>Biểu đồ bên dưới là <strong>smoothed spectrum</strong> của waveform trên, được tính bằng DFT (Discrete Fourier Transform):</p>
+<ul>
+<li>Trục X: Tần số</li>
+<li>Trục Y: Độ lớn của từng tần số, đơn vị Decibel</li>
+<li>Các đỉnh 930 Hz, 1860 Hz, and 3020 Hz tương đồng với các chu kỳ sóng đã quan sát được ở waveform trên</li>
+</ul>
+<figure>
+<img src="phonetics_spectrum_ae.png" alt="" /><figcaption>spectra-ae</figcaption>
+</figure>
+<p>Vì một số nguyên âm <strong>thay đổi theo thời gian</strong> (vd <code>ae</code>, …) , cần biểu diễn bằng một dạng biểu đồ khác gọi là <strong>spectrogram</strong></p>
+<blockquote>
+<p>A <strong>spectrum</strong> shows the <strong>frequency</strong> components of a wave <strong>at one point in time</strong>, a <strong>spectrogram</strong> is a way of envisioning how the <strong>different frequencies</strong> that make up a waveform <strong>change over time</strong> The <strong>darkness</strong> of a point on a spectrogram corresponds to the <strong>amplitude</strong> of the frequency component. Very <strong>dark</strong> points have <strong>high amplitude</strong>, light points have low amplitude <img src="phonetics_spectrogram.png" alt="spectrogram" /> <img src="phonetics_spectrogram2.png" alt="spectrogram2" /></p>
+</blockquote>
+<h2 id="các-công-thức">6. Các công thức</h2>
+<ul>
+<li><p>Để đo biên độ trung bình trong 1 khoảng thời gian, nếu dùng amplitude (dương và âm) sẽ triệt tiêu nhau và cho kết quả ~0. Sử dụng RMS (root mean square amplitude)</p></li>
+<li><p>Power của 1 âm có N samples: <br /><span class="math display">$$Power =\frac{1}{N} \sum_{i=1}^{N} x_{i}^{2}$$</span><br /></p></li>
+<li><p>Intensity: Normalize Power dưới ngưỡng con người nghe được, đơn vị dB.</p></li>
+<li><p><span class="math inline"><em>P</em>0 = 2 * 10<sup> − 5</sup><em>P</em><em>A</em></span> là ngưỡng áp suất con người nghe được</p></li>
+</ul>
+<p><br /><span class="math display">$$Intensity = 10 log_{10} \frac{1}{NP_0} \sum_{i=1}^{N} x_i^2$$</span><br /></p>
